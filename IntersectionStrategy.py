@@ -5,8 +5,8 @@ from MarketState import MarketState
 from TradingStrategy import TradingStrategy
 
 import logging
-LOT_SIZE = 30
-LIFESPAN: Lifespan = Lifespan.FILL_AND_KILL
+LOT_SIZE_IS = 30
+LIFESPAN_IS: Lifespan = Lifespan.FILL_AND_KILL
 
 class IntersectionStrategy(TradingStrategy):
 
@@ -46,12 +46,12 @@ class IntersectionStrategy(TradingStrategy):
 
     def calcAskSettings(self, instrument: int, etf: MarketState, fut: MarketState):
         if instrument == Instrument.ETF:
-            return [etf.getMaxBid(), LOT_SIZE, LIFESPAN]
+            return [etf.getMaxBid(), LOT_SIZE_IS, LIFESPAN_IS]
         else:
-            return [fut.getMaxBid(), LOT_SIZE, LIFESPAN]
+            return [fut.getMaxBid(), LOT_SIZE_IS, LIFESPAN_IS]
 
     def calcBidSettings(self, instrument: int, etf: MarketState, fut: MarketState):
         if instrument == Instrument.ETF:
-            return [etf.getMinAsk(), LOT_SIZE, LIFESPAN]
+            return [etf.getMinAsk(), LOT_SIZE_IS, LIFESPAN_IS]
         else:
-            return [fut.getMinAsk(), LOT_SIZE, LIFESPAN]
+            return [fut.getMinAsk(), LOT_SIZE_IS, LIFESPAN_IS]

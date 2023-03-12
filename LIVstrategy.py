@@ -2,8 +2,8 @@ from ready_trader_go import Instrument, Lifespan
 from MarketState import MarketState
 from TradingStrategy import TradingStrategy
 
-LOT_SIZE = 7
-LIFESPAN: Lifespan = Lifespan.GOOD_FOR_DAY
+LOT_SIZE_LIV = 7
+LIFESPAN_LIV: Lifespan = Lifespan.GOOD_FOR_DAY
 class LIVStrategy(TradingStrategy):
 
     def __init__(self):
@@ -34,7 +34,7 @@ class LIVStrategy(TradingStrategy):
             res = mean + abs(mean - prevMean)
         else:
             res = mean + (abs(mean - prevMean) // 100 + 1) * 100
-        return [res - res % 100,LOT_SIZE,LIFESPAN]
+        return [res - res % 100,LOT_SIZE_LIV,LIFESPAN_LIV]
 
     def calcBidSettings(self, instrument, etf, fut):
         tracer = 0
@@ -55,7 +55,7 @@ class LIVStrategy(TradingStrategy):
             res = mean - (abs(mean - prevMean) // 100 + 2) * 100
         else:
             res = mean - (abs(mean - prevMean) // 100 + 1) * 100
-        return [res - res % 100,LOT_SIZE,LIFESPAN]
+        return [res - res % 100,LOT_SIZE_LIV,LIFESPAN_LIV]
 
 
 

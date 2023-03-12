@@ -7090,3 +7090,18 @@ ConnectionResetError: [Errno 104] Connection reset by peer
 2023-03-12 18:55:34,163 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=67.306751 client_order_id=193 message='order rejected: in cross with an existing order'
 2023-03-12 18:55:43,650 [INFO   ] [APP] SIGTERM signal received - shutting down...
 2023-03-12 18:55:43,650 [INFO   ] [APP] closing event loop
+2023-03-12 19:00:53,419 [INFO   ] [APP] exchange started with arguments={rtg.py, run, traderIm.py}
+2023-03-12 19:00:53,419 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data4.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Trader02":"secret","Trader01":"secret","TraderInt":"secret","GemonaStreet":"secret"}}
+2023-03-12 19:00:53,420 [INFO   ] [CONTROLLER] starting the match
+2023-03-12 19:00:53,420 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-12 19:00:53,420 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-12 19:00:53,420 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-12 19:00:53,420 [INFO   ] [INFORMATION] information channel established
+2023-03-12 19:00:54,050 [INFO   ] [CONNECTION] fd=21 connection established: peer=127.0.0.1:36716
+2023-03-12 19:00:54,051 [INFO   ] [EXECUTION] fd=21 'GemonaStreet' is ready!
+2023-03-12 19:00:55,188 [INFO   ] [CONNECTION] fd=22 connection established: peer=127.0.0.1:54336
+2023-03-12 19:00:58,428 [INFO   ] [CONTROLLER] market open
+2023-03-12 19:01:22,158 [INFO   ] [APP] SIGTERM signal received - shutting down...
+2023-03-12 19:01:22,158 [INFO   ] [APP] closing event loop
+2023-03-12 19:01:22,158 [INFO   ] [CONNECTION] fd=21 connection lost
+2023-03-12 19:01:22,159 [WARNING] [EXECUTION] fd=21 lost connection to auto-trader:
