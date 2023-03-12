@@ -170,8 +170,6 @@ class AutoTrader(BaseAutoTrader):
         for order in self.bids:
             self.checkOperations()
             self.send_cancel_order(order)
-        self.asks = {}
-        self.bids = {}
         self.logger.warning("canceled orders")
 
     def on_hedge_filled_message(self, client_order_id: int, price: int, volume: int) -> None:

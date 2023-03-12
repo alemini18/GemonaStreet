@@ -26,6 +26,7 @@ from typing import List
 
 from ready_trader_go import BaseAutoTrader, Instrument, MAXIMUM_ASK, MINIMUM_BID, Side, Lifespan
 
+#--------------------------------------------------MarketState.py-------------------------------------------------------
 class MarketState:
     """
     This class is used to trace the market of a specific title (i.e. ETF, FUTURE).
@@ -87,13 +88,14 @@ class MarketState:
         for i in range(5):
             sum += self.ask_volumes[i] // ((i + 1) * (i + 1))
         return sum
+#--------------------------------------------------MarketState.py-------------------------------------------------------
+#--------------------------------------------------IntersectionStrategy.py----------------------------------------------
 
-from typing import List
 
 LOT_SIZE_IS = 30
 LIFESPAN_IS: Lifespan = Lifespan.FILL_AND_KILL
 
-class IntersectionStrategy():
+class IntersectionStrategy:
 
     def __init__(self):
         self.logger = logging.getLogger("DIFFERENCES")
@@ -139,10 +141,11 @@ class IntersectionStrategy():
             return [etf.getMinAsk(), LOT_SIZE_IS, LIFESPAN_IS]
         else:
             return [fut.getMinAsk(), LOT_SIZE_IS, LIFESPAN_IS]
-
+#--------------------------------------------------IntersectionStrategy.py----------------------------------------------
+#--------------------------------------------------LIVStrategy.py.py----------------------------------------------------
 LOT_SIZE_LIV = 7
 LIFESPAN_LIV: Lifespan = Lifespan.GOOD_FOR_DAY
-class LIVStrategy():
+class LIVStrategy:
 
     def __init__(self):
         pass
@@ -195,7 +198,8 @@ class LIVStrategy():
             res = mean - (abs(mean - prevMean) // 100 + 1) * 100
         return [res - res % 100,LOT_SIZE_LIV,LIFESPAN_LIV]
 
-
+#--------------------------------------------------LIVStrategy.py-------------------------------------------------------
+#--------------------------------------------------traderIm.py----------------------------------------------------------
 
 
 LOT_SIZE = 10
@@ -258,10 +262,10 @@ class AutoTrader(BaseAutoTrader):
                 sumAsks += self.asks[order][1]
             for order in self.bids:
                 sumBids += self.bids[order][1]
-            print("bid: ",self.etfs + request + sumBids)
-            print("ask: ",self.etfs + request - sumAsks)
+            #print("bid: ",self.etfs + request + sumBids)
+            #print("ask: ",self.etfs + request - sumAsks)
             if (request > 0 and self.etfs + request + sumBids > LOT_LIMIT) or (request < 0 and self.etfs + request - sumAsks < -LOT_LIMIT):
-                print("Attenzione: stavi per sforare gli etf")
+                #print("Attenzione: stavi per sforare gli etf")
                 return False
         if instrument == Instrument.FUTURE:
             sumAsks = 0
@@ -271,7 +275,7 @@ class AutoTrader(BaseAutoTrader):
             for order in self.hbids:
                 sumBids += self.hbids[order][1]
             if (request > 0 and self.fut + request + sumBids > LOT_LIMIT) or (request < 0 and self.fut + request - sumAsks < -LOT_LIMIT):
-                print("Attenzione: stavi per sforare i future")
+                #print("Attenzione: stavi per sforare i future")
                 return False
         return True
 
@@ -335,15 +339,12 @@ class AutoTrader(BaseAutoTrader):
         will identify that order, otherwise the client_order_id will be zero.
         """
         self.logger.warning("error with order %d: %s", client_order_id, error_message.decode())
-        # TODO: cancellare tutti gli ordini attivi
         for order in self.asks:
             self.checkOperations()
             self.send_cancel_order(order)
         for order in self.bids:
             self.checkOperations()
             self.send_cancel_order(order)
-        self.asks = {}
-        self.bids = {}
         self.logger.warning("canceled orders")
 
     def on_hedge_filled_message(self, client_order_id: int, price: int, volume: int) -> None:
@@ -484,3 +485,5 @@ class AutoTrader(BaseAutoTrader):
         """
         self.logger.info("received trade ticks for instrument %d with sequence number %d", instrument,
                          sequence_number)
+
+#--------------------------------------------------traderIm.py----------------------------------------------------------
