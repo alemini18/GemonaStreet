@@ -18,9 +18,9 @@ class IntersectionStrategy(TradingStrategy):
         self.differences_positive = []
         self.differences_negative = []
         self.possible_threshold = np.arange(100, 700, 100)
-        self.avg_gain_up = np.ones(7) * 250
+        self.avg_gain_up = np.ones(10) * 250
         self.tau_up = 400
-        self.avg_gain_down = np.ones(7) * 250
+        self.avg_gain_down = np.ones(10) * 250
         self.tau_down = -400
         self.localMax = 0
         self.localMin = 0
@@ -31,10 +31,10 @@ class IntersectionStrategy(TradingStrategy):
         '''
         for i, t in enumerate(self.possible_threshold):
             if self.tau_up > last_max:
-                self.avg_gain_up[i] = self.avg_gain_up[i] * 25 / 26
+                self.avg_gain_up[i] = self.avg_gain_up[i] * 9 / 10
             else:
-                self.avg_gain_up[i] = (self.avg_gain_up[i] * 25 + (t - FEE * t))/26
-        self.tau_up = (np.argmin(self.avg_gain_up)+1) * 100 #il valore da usare per canSell è questo
+                self.avg_gain_up[i] = (self.avg_gain_up[i] * 9 + (t - FEE * t))/10
+        self.tau_up = (np.argmax(self.avg_gain_up)+1) * 100 #il valore da usare per canSell è questo
 
     def calc_down_threshold(self,last_min):
         '''
@@ -42,10 +42,10 @@ class IntersectionStrategy(TradingStrategy):
         '''
         for i, t in enumerate(self.possible_threshold):
             if self.tau_down < last_min:
-                self.avg_gain_down[i] = self.avg_gain_down[i] * 25 / 26
+                self.avg_gain_down[i] = self.avg_gain_down[i] * 9 / 10
             else:
-                self.avg_gain_down[i] = (self.avg_gain_down[i] * 25 + (t - FEE * t)) / 26
-        self.tau_down = -(np.argmin(self.avg_gain_down) + 1) * 100  ##il valore da usare per canBuy è questo
+                self.avg_gain_down[i] = (self.avg_gain_down[i] * 9 + (t - FEE * t)) / 10
+        self.tau_down = -(np.argmax(self.avg_gain_down) + 1) * 100  ##il valore da usare per canBuy è questo
 
     def canSell(self, instrument: int, etf: MarketState, fut: MarketState) -> bool:  #canBuy e canSell vanno chiamate assieme
         delta =etf.getMean() - fut.getMean()
