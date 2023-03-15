@@ -1,2 +1,0 @@
-2023-03-12 16:19:22,971 [INFO   ] [APP] trader started with arguments={rtg.py, run, trader.py}
-2023-03-12 16:19:22,972 [INFO   ] [APP] configuration={"Execution":{"Host":"127.0.0.1","Port":12345},"Information":{"Type":"mmap","Name":"info.dat"},"TeamName":"GemonaStreet","Secret":"secret"}

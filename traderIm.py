@@ -20,6 +20,8 @@ import itertools
 import time
 
 from typing import List
+from threading import *
+
 
 from ready_trader_go import BaseAutoTrader, Instrument, MAXIMUM_ASK, MINIMUM_BID, Side
 from IntersectionStrategy import IntersectionStrategy
@@ -64,19 +66,25 @@ class AutoTrader(BaseAutoTrader):
         self.FUT = MarketState()
         self.LIV = LIVStrategy()
         self.IS = IntersectionStrategy()
+        self.lastSequence = 0
+        self.semaforo = Semaphore(1)
+        self.semaforo1 = Semaphore(1)
 
 
-    def checkOperations(self) -> None:
+
+    def checkOperations(self) -> bool:
+        ###print(self.operation)
+        self.semaforo.acquire()
         if time.time() - self.lastSecond >= 1:
             self.lastSecond = time.time()
             self.operation = 0
-        if self.operation < 40:
+        if self.operation < 30:
             self.operation += 1
         else:
             time.sleep(1)
-            self.lastSecond = time.time()
             self.operation = 1
-            ##print("Superate le 40 operazioni. Aspettato un secondo.")
+            ###print("Superate le 40 operazioni. Aspettato un secondo.")
+        self.semaforo.release()
 
     def checkLots(self, instrument: int, request: int) -> bool:  # request is negative for asks and positive for bids
         if instrument == Instrument.ETF:
@@ -86,10 +94,10 @@ class AutoTrader(BaseAutoTrader):
                 sumAsks += self.asks[order][1]
             for order in self.bids:
                 sumBids += self.bids[order][1]
-            print("bid: ",self.etfs + request + sumBids)
-            print("ask: ",self.etfs + request - sumAsks)
+            ###print("bid: ",self.etfs + request + sumBids)
+            ###print("ask: ",self.etfs + request - sumAsks)
             if (request > 0 and self.etfs + request + sumBids > LOT_LIMIT) or (request < 0 and self.etfs + request - sumAsks < -LOT_LIMIT):
-                print("Attenzione: stavi per sforare gli etf")
+                ###print("Attenzione: stavi per sforare gli etf")
                 return False
         if instrument == Instrument.FUTURE:
             sumAsks = 0
@@ -99,21 +107,21 @@ class AutoTrader(BaseAutoTrader):
             for order in self.hbids:
                 sumBids += self.hbids[order][1]
             if (request > 0 and self.fut + request + sumBids > LOT_LIMIT) or (request < 0 and self.fut + request - sumAsks < -LOT_LIMIT):
-                print("Attenzione: stavi per sforare i future")
+                ###print("Attenzione: stavi per sforare i future")
                 return False
         return True
 
     def checkLimitOrders(self):  #checking max operation limit (10) and removing old active operations
         allOrders = list(self.asks.keys()) + list(self.bids.keys())
         allOrders.sort()
-        if len(allOrders) >= 10:
+        if len(allOrders) >= 5:
             for i in range(3):
                 self.checkOperations()
                 self.send_cancel_order(allOrders[i])
-                #print("canceled: ", allOrders[i])
+                ####print("canceled: ", allOrders[i])
         toBeRemoved = []
         for order in self.asks:
-            #print(time.time() - self.asks[order][2])
+            ####print(time.time() - self.asks[order][2])
             if time.time() - self.asks[order][2] > 10:
                 toBeRemoved.append(order)
         for item in toBeRemoved:
@@ -141,19 +149,19 @@ class AutoTrader(BaseAutoTrader):
             request_price = self.FUT.getMinAsk()
             volume = abs(self.etfs + self.fut + 8)
             if request_price and self.checkLots(Instrument.FUTURE, volume):
-                #print("Special HBID")
+                ####print("Special HBID")
                 bid_id = next(self.order_ids)
-                self.checkOperations()
                 self.hbids[bid_id] = [request_price, volume]
+                self.checkOperations()
                 self.send_hedge_order(bid_id, Side.BID, request_price, volume)
         if self.etfs + self.fut > 8:
             request_price = self.FUT.getMaxBid()
             volume = abs(self.etfs + self.fut - 8)
             if request_price and self.checkLots(Instrument.FUTURE, -volume):
-                #print("Special HASK")
+                ####print("Special HASK")
                 ask_id = next(self.order_ids)
-                self.checkOperations()
                 self.hasks[ask_id] = [request_price, volume]
+                self.checkOperations()
                 self.send_hedge_order(ask_id, Side.ASK, request_price, volume)
 
     def on_error_message(self, client_order_id: int, error_message: bytes) -> None:
@@ -189,7 +197,7 @@ class AutoTrader(BaseAutoTrader):
             self.fut += volume
             self.soldi -= volume * price
             self.hbids.pop(client_order_id)
-        #print("fut: ", self.fut, "soldi: ", self.soldi)
+        ####print("fut: ", self.fut, "soldi: ", self.soldi)
 
     def on_order_book_update_message(self, instrument: int, sequence_number: int, ask_prices: List[int],
                                      ask_volumes: List[int], bid_prices: List[int], bid_volumes: List[int]) -> None:
@@ -200,27 +208,32 @@ class AutoTrader(BaseAutoTrader):
         prices are reported along with the volume available at each of those
         price levels.
         """
+        print(instrument, sequence_number)
+        self.semaforo1.acquire()
         self.logger.info("received order book for instrument %d with sequence number %d", instrument,
                          sequence_number)
+        ####print("Sequence number:" ,sequence_number)
         if sequence_number < 50: #Aspettiamo un pochino
+            self.semaforo1.release()
             return
         self.checkLimitOrders()
         if instrument == Instrument.ETF:
             self.ETF.update(ask_prices, ask_volumes, bid_prices, bid_volumes)
             self.checkUnhedged()
             if self.IS.canSell(Instrument.ETF,self.ETF,self.FUT):
+                self.IS.canBuy(Instrument.ETF, self.ETF, self.FUT)
                 askSettings = self.IS.calcAskSettings(Instrument.ETF, self.ETF, self.FUT)
                 if askSettings[0] > 0 and self.checkLots(Instrument.ETF, -askSettings[1]):
                     ask_id = next(self.order_ids)
-                    self.checkOperations()
                     self.asks[ask_id] = [askSettings[0], askSettings[1], time.time()]
+                    self.checkOperations()
                     self.send_insert_order(ask_id, Side.SELL, askSettings[0], askSettings[1], askSettings[2])
-            if self.IS.canBuy(Instrument.ETF,self.ETF,self.FUT):
+            elif self.IS.canBuy(Instrument.ETF,self.ETF,self.FUT):
                 bidSettings = self.IS.calcBidSettings(Instrument.ETF, self.ETF, self.FUT)
                 if bidSettings[0] > 0 and self.checkLots(Instrument.ETF, bidSettings[1]):
                     bid_id = next(self.order_ids)
-                    self.checkOperations()
                     self.bids[bid_id] = [bidSettings[0], bidSettings[1], time.time()]
+                    self.checkOperations()
                     self.send_insert_order(bid_id, Side.BUY, bidSettings[0], bidSettings[1], bidSettings[2])
             else:
                 if self.LIV.canSell(Instrument.ETF, self.ETF, self.FUT):
@@ -228,21 +241,21 @@ class AutoTrader(BaseAutoTrader):
                     if askSettings[0] > 0 and self.checkLots(Instrument.ETF, -askSettings[1]):
                         ask_id = next(self.order_ids)
                         self.marketMaking.add(ask_id)
-                        self.checkOperations()
                         self.asks[ask_id] = [askSettings[0], askSettings[1], time.time()]
+                        self.checkOperations()
                         self.send_insert_order(ask_id, Side.SELL, askSettings[0], askSettings[1], askSettings[2])
                 if self.LIV.canBuy(Instrument.ETF, self.ETF, self.FUT):
                     bidSettings = self.LIV.calcBidSettings(Instrument.ETF, self.ETF, self.FUT)
                     if bidSettings[0] > 0 and self.checkLots(Instrument.ETF, bidSettings[1]):
                         bid_id = next(self.order_ids)
                         self.marketMaking.add(bid_id)
-                        self.checkOperations()
                         self.bids[bid_id] = [bidSettings[0], bidSettings[1], time.time()]
+                        self.checkOperations()
                         self.send_insert_order(bid_id, Side.BUY, bidSettings[0], bidSettings[1], bidSettings[2])
-
-
         else:
             self.FUT.update(ask_prices, ask_volumes, bid_prices, bid_volumes)
+        print(instrument,sequence_number)
+        self.semaforo1.release()
 
     def on_order_filled_message(self, client_order_id: int, price: int, volume: int) -> None:
         """Called when one of your orders is filled, partially or fully.
@@ -260,8 +273,9 @@ class AutoTrader(BaseAutoTrader):
             if client_order_id in self.marketMaking:
                 request_price = self.LIV.calcBidSettings(Instrument.FUTURE,self.ETF,self.FUT)[0]
             if request_price and self.checkLots(Instrument.FUTURE, volume):
-                #print("HBID")
+                ####print("HBID")
                 bid_id = next(self.order_ids)
+                self.hbids[bid_id] = [request_price, volume]
                 self.checkOperations()
                 self.hbids[bid_id] = [request_price, volume]
                 self.send_hedge_order(bid_id, Side.BID, request_price, volume)
@@ -272,12 +286,12 @@ class AutoTrader(BaseAutoTrader):
             if client_order_id in self.marketMaking:
                 request_price = self.LIV.calcAskSettings(Instrument.FUTURE, self.ETF, self.FUT)[0]
             if request_price and self.checkLots(Instrument.FUTURE, -volume):
-                #print("HASK")
+                ####print("HASK")
                 ask_id = next(self.order_ids)
-                self.checkOperations()
                 self.hasks[ask_id] = [request_price, volume]
+                self.checkOperations()
                 self.send_hedge_order(ask_id, Side.ASK, request_price, volume)
-        #print("etfs: ", self.etfs, "soldi: ", self.soldi)
+        ####print("etfs: ", self.etfs, "soldi: ", self.soldi)
 
     def on_order_status_message(self, client_order_id: int, fill_volume: int, remaining_volume: int,
                                 fees: int) -> None:

@@ -26,9 +26,9 @@ class IntersectionStrategy(TradingStrategy):
             self.differences_positive.pop(0)
         if len(self.differences_negative) > 100:
             self.differences_negative.pop(0)
-        THRESHOLD = sorted(self.differences_negative)[14]
+        THRESHOLD = 400 #sorted(self.differences_negative)[15]
         self.logger.warning(THRESHOLD)
-        return delta < THRESHOLD
+        return delta < THRESHOLD < -200
 
     def canSell(self, instrument: int, etf: MarketState, fut: MarketState) -> bool:
         delta = etf.getMean() - fut.getMean()
@@ -40,9 +40,9 @@ class IntersectionStrategy(TradingStrategy):
             self.differences_positive.pop(0)
         if len(self.differences_negative) > 100:
             self.differences_negative.pop(0)
-        THRESHOLD = sorted(self.differences_positive)[-15]
+        THRESHOLD = 400#sorted(self.differences_positive)[-15]
         self.logger.warning(THRESHOLD)
-        return delta > THRESHOLD
+        return delta > THRESHOLD > 200
 
     def calcAskSettings(self, instrument: int, etf: MarketState, fut: MarketState):
         if instrument == Instrument.ETF:
