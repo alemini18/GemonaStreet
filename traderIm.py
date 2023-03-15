@@ -73,8 +73,8 @@ class AutoTrader(BaseAutoTrader):
 
 
     def checkOperations(self) -> bool:
-        ###print(self.operation)
         self.semaforo.acquire()
+        print(self.operation)
         if time.time() - self.lastSecond >= 1:
             self.lastSecond = time.time()
             self.operation = 0
@@ -208,13 +208,12 @@ class AutoTrader(BaseAutoTrader):
         prices are reported along with the volume available at each of those
         price levels.
         """
-        print(instrument, sequence_number)
-        self.semaforo1.acquire()
+        #print(instrument, sequence_number)
+        #self.semaforo1.acquire()
         self.logger.info("received order book for instrument %d with sequence number %d", instrument,
                          sequence_number)
         ####print("Sequence number:" ,sequence_number)
-        if sequence_number < 50: #Aspettiamo un pochino
-            self.semaforo1.release()
+        if sequence_number%5 != 0:
             return
         self.checkLimitOrders()
         if instrument == Instrument.ETF:
@@ -254,8 +253,8 @@ class AutoTrader(BaseAutoTrader):
                         self.send_insert_order(bid_id, Side.BUY, bidSettings[0], bidSettings[1], bidSettings[2])
         else:
             self.FUT.update(ask_prices, ask_volumes, bid_prices, bid_volumes)
-        print(instrument,sequence_number)
-        self.semaforo1.release()
+        #print(instrument,sequence_number)
+        #self.semaforo1.release()
 
     def on_order_filled_message(self, client_order_id: int, price: int, volume: int) -> None:
         """Called when one of your orders is filled, partially or fully.

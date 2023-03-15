@@ -7782,3 +7782,147 @@ ConnectionResetError: [Errno 104] Connection reset by peer
 2023-03-15 15:44:52,080 [INFO   ] [CONTROLLER] market open
 2023-03-15 15:47:54,998 [INFO   ] [APP] SIGTERM signal received - shutting down...
 2023-03-15 15:47:54,998 [INFO   ] [APP] closing event loop
+2023-03-15 16:18:11,145 [INFO   ] [APP] exchange started with arguments={rtg.py, run, traderIm.py}
+2023-03-15 16:18:11,145 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data4.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Trader02":"secret","Trader01":"secret","TraderInt":"secret","GemonaStreet":"secret"}}
+2023-03-15 16:18:11,146 [INFO   ] [CONTROLLER] starting the match
+2023-03-15 16:18:11,146 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-15 16:18:11,147 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-15 16:18:11,147 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-15 16:18:11,147 [INFO   ] [INFORMATION] information channel established
+2023-03-15 16:18:11,795 [INFO   ] [CONNECTION] fd=21 connection established: peer=127.0.0.1:59990
+2023-03-15 16:18:11,795 [INFO   ] [EXECUTION] fd=21 'GemonaStreet' is ready!
+2023-03-15 16:18:12,899 [INFO   ] [CONNECTION] fd=22 connection established: peer=127.0.0.1:49360
+2023-03-15 16:18:16,157 [INFO   ] [CONTROLLER] market open
+2023-03-15 16:18:28,418 [INFO   ] [CONNECTION] fd=21 connection lost
+2023-03-15 16:18:28,418 [WARNING] [EXECUTION] fd=21 lost connection to auto-trader:
+2023-03-15 16:18:34,636 [INFO   ] [APP] SIGTERM signal received - shutting down...
+2023-03-15 16:18:34,636 [INFO   ] [APP] closing event loop
+2023-03-15 16:18:55,036 [INFO   ] [APP] exchange started with arguments={rtg.py, run, traderIm.py}
+2023-03-15 16:18:55,037 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data4.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Trader02":"secret","Trader01":"secret","TraderInt":"secret","GemonaStreet":"secret"}}
+2023-03-15 16:18:55,037 [INFO   ] [CONTROLLER] starting the match
+2023-03-15 16:18:55,037 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-15 16:18:55,038 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-15 16:18:55,038 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-15 16:18:55,038 [INFO   ] [INFORMATION] information channel established
+2023-03-15 16:18:55,683 [INFO   ] [CONNECTION] fd=21 connection established: peer=127.0.0.1:57744
+2023-03-15 16:18:55,684 [INFO   ] [EXECUTION] fd=21 'GemonaStreet' is ready!
+2023-03-15 16:18:56,845 [INFO   ] [CONNECTION] fd=22 connection established: peer=127.0.0.1:41274
+2023-03-15 16:19:00,050 [INFO   ] [CONTROLLER] market open
+2023-03-15 16:19:00,057 [INFO   ] [CONNECTION] fd=21 connection lost
+2023-03-15 16:19:00,058 [WARNING] [EXECUTION] fd=21 lost connection to auto-trader:
+2023-03-15 16:19:37,277 [INFO   ] [APP] SIGINT signal received - shutting down...
+2023-03-15 16:19:37,277 [INFO   ] [APP] closing event loop
+2023-03-15 16:20:20,957 [INFO   ] [APP] exchange started with arguments={rtg.py, run, traderIm.py}
+2023-03-15 16:20:20,957 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data4.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Trader02":"secret","Trader01":"secret","TraderInt":"secret","GemonaStreet":"secret"}}
+2023-03-15 16:20:20,958 [INFO   ] [CONTROLLER] starting the match
+2023-03-15 16:20:20,958 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-15 16:20:20,958 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-15 16:20:20,958 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-15 16:20:20,958 [INFO   ] [INFORMATION] information channel established
+2023-03-15 16:20:21,568 [INFO   ] [CONNECTION] fd=21 connection established: peer=127.0.0.1:44502
+2023-03-15 16:20:21,572 [INFO   ] [EXECUTION] fd=21 'GemonaStreet' is ready!
+2023-03-15 16:20:22,713 [INFO   ] [CONNECTION] fd=22 connection established: peer=127.0.0.1:43734
+2023-03-15 16:20:25,966 [INFO   ] [CONTROLLER] market open
+2023-03-15 16:20:47,280 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=21.308829 client_order_id=22 message='order rejected: in cross with an existing order'
+2023-03-15 16:20:47,694 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=21.723895 client_order_id=25 message='order rejected: in cross with an existing order'
+2023-03-15 16:21:07,217 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=41.250933 client_order_id=47 message='order rejected: in cross with an existing order'
+2023-03-15 16:21:14,463 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=48.496198 client_order_id=55 message='order rejected: in cross with an existing order'
+2023-03-15 16:21:16,768 [INFO   ] [EXECUTION] fd=21 message frequency limit breached: now=50.801086 value=51 limit=50
+2023-03-15 16:21:16,768 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=50.801086 client_order_id=0 message='message frequency limit breached'
+2023-03-15 16:21:16,768 [INFO   ] [COMPETITOR] 'GemonaStreet' closing execution channel at time=50.801086
+2023-03-15 16:21:16,768 [INFO   ] [CONNECTION] fd=21 connection lost
+2023-03-15 16:21:35,725 [INFO   ] [APP] SIGTERM signal received - shutting down...
+2023-03-15 16:21:35,725 [INFO   ] [APP] closing event loop
+2023-03-15 16:25:08,317 [INFO   ] [APP] exchange started with arguments={rtg.py, run, traderIm.py}
+2023-03-15 16:25:08,317 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data4.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Trader02":"secret","Trader01":"secret","TraderInt":"secret","GemonaStreet":"secret"}}
+2023-03-15 16:25:08,318 [INFO   ] [CONTROLLER] starting the match
+2023-03-15 16:25:08,318 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-15 16:25:08,318 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-15 16:25:08,318 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-15 16:25:08,318 [INFO   ] [INFORMATION] information channel established
+2023-03-15 16:25:08,962 [INFO   ] [CONNECTION] fd=21 connection established: peer=127.0.0.1:38320
+2023-03-15 16:25:08,963 [INFO   ] [EXECUTION] fd=21 'GemonaStreet' is ready!
+2023-03-15 16:25:10,099 [INFO   ] [CONNECTION] fd=22 connection established: peer=127.0.0.1:33752
+2023-03-15 16:25:13,326 [INFO   ] [CONTROLLER] market open
+2023-03-15 16:25:34,595 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=21.266259 client_order_id=21 message='order rejected: in cross with an existing order'
+2023-03-15 16:25:35,047 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=21.720157 client_order_id=24 message='order rejected: in cross with an existing order'
+2023-03-15 16:26:18,864 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=65.537950 client_order_id=81 message='order rejected: in cross with an existing order'
+2023-03-15 16:26:19,304 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=65.977888 client_order_id=84 message='order rejected: in cross with an existing order'
+2023-03-15 16:26:22,868 [INFO   ] [EXECUTION] fd=21 message frequency limit breached: now=69.541223 value=51 limit=50
+2023-03-15 16:26:22,868 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=69.541223 client_order_id=0 message='message frequency limit breached'
+2023-03-15 16:26:22,868 [INFO   ] [COMPETITOR] 'GemonaStreet' closing execution channel at time=69.541223
+2023-03-15 16:26:22,868 [INFO   ] [CONNECTION] fd=21 connection lost
+2023-03-15 16:27:12,620 [INFO   ] [APP] SIGTERM signal received - shutting down...
+2023-03-15 16:27:12,620 [INFO   ] [APP] closing event loop
+2023-03-15 16:45:02,291 [INFO   ] [APP] exchange started with arguments={rtg.py, run, traderIm.py}
+2023-03-15 16:45:02,291 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data4.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Trader02":"secret","Trader01":"secret","TraderInt":"secret","GemonaStreet":"secret"}}
+2023-03-15 16:45:02,292 [INFO   ] [CONTROLLER] starting the match
+2023-03-15 16:45:02,292 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-15 16:45:02,293 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-15 16:45:02,293 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-15 16:45:02,293 [INFO   ] [INFORMATION] information channel established
+2023-03-15 16:45:02,914 [INFO   ] [CONNECTION] fd=21 connection established: peer=127.0.0.1:42004
+2023-03-15 16:45:02,914 [INFO   ] [EXECUTION] fd=21 'GemonaStreet' is ready!
+2023-03-15 16:45:04,033 [INFO   ] [CONNECTION] fd=22 connection established: peer=127.0.0.1:37034
+2023-03-15 16:45:07,304 [INFO   ] [CONTROLLER] market open
+2023-03-15 16:45:22,981 [INFO   ] [APP] SIGINT signal received - shutting down...
+2023-03-15 16:45:22,981 [INFO   ] [APP] closing event loop
+2023-03-15 16:45:53,957 [INFO   ] [APP] exchange started with arguments={rtg.py, run, traderIm.py}
+2023-03-15 16:45:53,957 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data4.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Trader02":"secret","Trader01":"secret","TraderInt":"secret","GemonaStreet":"secret"}}
+2023-03-15 16:45:53,958 [INFO   ] [CONTROLLER] starting the match
+2023-03-15 16:45:53,958 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-15 16:45:53,958 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-15 16:45:53,958 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-15 16:45:53,958 [INFO   ] [INFORMATION] information channel established
+2023-03-15 16:45:54,590 [INFO   ] [CONNECTION] fd=21 connection established: peer=127.0.0.1:36244
+2023-03-15 16:45:54,590 [INFO   ] [EXECUTION] fd=21 'GemonaStreet' is ready!
+2023-03-15 16:45:55,743 [INFO   ] [CONNECTION] fd=22 connection established: peer=127.0.0.1:38008
+2023-03-15 16:45:58,968 [INFO   ] [CONTROLLER] market open
+2023-03-15 16:46:20,191 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=21.223072 client_order_id=21 message='order rejected: in cross with an existing order'
+2023-03-15 16:46:20,718 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=21.749552 client_order_id=24 message='order rejected: in cross with an existing order'
+2023-03-15 16:46:38,680 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=39.712275 client_order_id=29 message='order rejected: in cross with an existing order'
+2023-03-15 16:46:39,181 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=40.213390 client_order_id=32 message='order rejected: in cross with an existing order'
+2023-03-15 16:46:45,705 [INFO   ] [EXECUTION] fd=21 message frequency limit breached: now=46.737385 value=51 limit=50
+2023-03-15 16:46:45,706 [INFO   ] [COMPETITOR] 'GemonaStreet' sent error message: time=46.737385 client_order_id=0 message='message frequency limit breached'
+2023-03-15 16:46:45,706 [INFO   ] [COMPETITOR] 'GemonaStreet' closing execution channel at time=46.737385
+2023-03-15 16:46:45,706 [INFO   ] [CONNECTION] fd=21 connection lost
+2023-03-15 16:46:59,023 [INFO   ] [APP] SIGTERM signal received - shutting down...
+2023-03-15 16:46:59,023 [INFO   ] [APP] closing event loop
+2023-03-15 16:56:34,083 [INFO   ] [APP] exchange started with arguments={rtg.py, run, traderIm.py}
+2023-03-15 16:56:34,083 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data4.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Trader02":"secret","Trader01":"secret","TraderInt":"secret","GemonaStreet":"secret"}}
+2023-03-15 16:56:34,084 [INFO   ] [CONTROLLER] starting the match
+2023-03-15 16:56:34,084 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-15 16:56:34,084 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-15 16:56:34,085 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-15 16:56:34,085 [INFO   ] [INFORMATION] information channel established
+2023-03-15 16:56:34,703 [INFO   ] [CONNECTION] fd=21 connection established: peer=127.0.0.1:42624
+2023-03-15 16:56:34,704 [INFO   ] [EXECUTION] fd=21 'GemonaStreet' is ready!
+2023-03-15 16:56:35,929 [INFO   ] [CONNECTION] fd=22 connection established: peer=127.0.0.1:43906
+2023-03-15 16:56:39,093 [INFO   ] [CONTROLLER] market open
+2023-03-15 16:57:22,847 [INFO   ] [APP] SIGTERM signal received - shutting down...
+2023-03-15 16:57:22,847 [INFO   ] [APP] closing event loop
+2023-03-15 16:58:05,197 [INFO   ] [APP] exchange started with arguments={rtg.py, run, traderIm.py}
+2023-03-15 16:58:05,197 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data4.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Trader02":"secret","Trader01":"secret","TraderInt":"secret","GemonaStreet":"secret"}}
+2023-03-15 16:58:05,198 [INFO   ] [CONTROLLER] starting the match
+2023-03-15 16:58:05,198 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-15 16:58:05,198 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-15 16:58:05,198 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-15 16:58:05,198 [INFO   ] [INFORMATION] information channel established
+2023-03-15 16:58:05,884 [INFO   ] [CONNECTION] fd=21 connection established: peer=127.0.0.1:43086
+2023-03-15 16:58:05,889 [INFO   ] [EXECUTION] fd=21 'GemonaStreet' is ready!
+2023-03-15 16:58:07,056 [INFO   ] [CONNECTION] fd=22 connection established: peer=127.0.0.1:35434
+2023-03-15 16:58:09,282 [INFO   ] [APP] SIGTERM signal received - shutting down...
+2023-03-15 16:58:09,282 [INFO   ] [APP] closing event loop
+2023-03-15 16:58:19,485 [INFO   ] [APP] exchange started with arguments={rtg.py, run, traderIm.py}
+2023-03-15 16:58:19,485 [INFO   ] [APP] configuration={"Engine":{"MarketDataFile":"data/market_data4.csv","MarketEventInterval":0.05,"MarketOpenDelay":5.0,"MatchEventsFile":"match_events.csv","ScoreBoardFile":"score_board.csv","Speed":1.0,"TickInterval":0.25},"Execution":{"Host":"127.0.0.1","Port":12345},"Fees":{"Maker":-0.0001,"Taker":0.0002},"Hud":{"Host":"127.0.0.1","Port":12347},"Information":{"Type":"mmap","Name":"info.dat"},"Instrument":{"EtfClamp":0.002,"TickSize":1.0},"Limits":{"ActiveOrderCountLimit":10,"ActiveVolumeLimit":200,"MessageFrequencyInterval":1.0,"MessageFrequencyLimit":50,"PositionLimit":100},"Traders":{"Trader02":"secret","Trader01":"secret","TraderInt":"secret","GemonaStreet":"secret"}}
+2023-03-15 16:58:19,486 [INFO   ] [CONTROLLER] starting the match
+2023-03-15 16:58:19,486 [INFO   ] [EXECUTION] starting execution server: host=127.0.0.1 port=12345
+2023-03-15 16:58:19,486 [INFO   ] [INFORMATION] starting information publisher: type=mmap name=info.dat
+2023-03-15 16:58:19,486 [INFO   ] [HEADS_UP] starting heads-up display server: host=127.0.0.1 port=12347
+2023-03-15 16:58:19,486 [INFO   ] [INFORMATION] information channel established
+2023-03-15 16:58:20,223 [INFO   ] [CONNECTION] fd=21 connection established: peer=127.0.0.1:42248
+2023-03-15 16:58:20,223 [INFO   ] [EXECUTION] fd=21 'GemonaStreet' is ready!
+2023-03-15 16:58:21,384 [INFO   ] [CONNECTION] fd=22 connection established: peer=127.0.0.1:56654
+2023-03-15 16:58:24,496 [INFO   ] [CONTROLLER] market open
+2023-03-15 17:00:20,870 [INFO   ] [APP] SIGTERM signal received - shutting down...
+2023-03-15 17:00:20,870 [INFO   ] [APP] closing event loop

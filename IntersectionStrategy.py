@@ -1,4 +1,5 @@
 from typing import List
+import numpy as np
 
 from ready_trader_go import Instrument, Lifespan
 from MarketState import MarketState
@@ -7,6 +8,7 @@ from TradingStrategy import TradingStrategy
 import logging
 LOT_SIZE_IS = 30
 LIFESPAN_IS: Lifespan = Lifespan.FILL_AND_KILL
+FEE = 0.0002
 
 class IntersectionStrategy(TradingStrategy):
 
@@ -15,34 +17,53 @@ class IntersectionStrategy(TradingStrategy):
         self.logger = logging.getLogger("DIFFERENCES")
         self.differences_positive = []
         self.differences_negative = []
+        self.possible_threshold = np.arange(100, 700, 100)
+        self.avg_gain_up = np.ones(7) * 250
+        self.tau_up = 400
+        self.avg_gain_down = np.ones(7) * 250
+        self.tau_down = -400
+        self.localMax = 0
+        self.localMin = 0
+        self.haveSell = False
+    def calc_up_threshold(self,last_max):
+        '''
+        Called everytime a new local max has been recived.
+        '''
+        for i, t in enumerate(self.possible_threshold):
+            if self.tau_up > last_max:
+                self.avg_gain_up[i] = self.avg_gain_up[i] * 25 / 26
+            else:
+                self.avg_gain_up[i] = (self.avg_gain_up[i] * 25 + (t - FEE * t))/26
+        self.tau_up = (np.argmin(self.avg_gain_up)+1) * 100 #il valore da usare per canSell è questo
 
-    def canBuy(self, instrument: int, etf: MarketState, fut: MarketState) -> bool:  #canBuy e canSell vanno chiamate assieme
-        delta = etf.getMean() - fut.getMean()
-        if delta <= 0:
-            self.differences_negative.append(delta)
-        if len(self.differences_negative) < 100:
-            return False
-        if len(self.differences_positive) > 100:
-            self.differences_positive.pop(0)
-        if len(self.differences_negative) > 100:
-            self.differences_negative.pop(0)
-        THRESHOLD = 400 #sorted(self.differences_negative)[15]
-        self.logger.warning(THRESHOLD)
-        return delta < THRESHOLD < -200
+    def calc_down_threshold(self,last_min):
+        '''
+        Called everytime a new local min has been recived.
+        '''
+        for i, t in enumerate(self.possible_threshold):
+            if self.tau_down < last_min:
+                self.avg_gain_down[i] = self.avg_gain_down[i] * 25 / 26
+            else:
+                self.avg_gain_down[i] = (self.avg_gain_down[i] * 25 + (t - FEE * t)) / 26
+        self.tau_down = -(np.argmin(self.avg_gain_down) + 1) * 100  ##il valore da usare per canBuy è questo
 
-    def canSell(self, instrument: int, etf: MarketState, fut: MarketState) -> bool:
+    def canSell(self, instrument: int, etf: MarketState, fut: MarketState) -> bool:  #canBuy e canSell vanno chiamate assieme
+        delta =etf.getMean() - fut.getMean()
+        self.localMax = max(self.localMax,delta)
+        if delta == 0 and self.localMax > 0:
+            self.calc_up_threshold(self.localMax)
+            self.localMax = 0
+        self.logger.warning(self.tau_up)
+        return delta >= self.tau_up
+
+    def canBuy(self, instrument: int, etf: MarketState, fut: MarketState) -> bool:
         delta = etf.getMean() - fut.getMean()
-        if delta >= 0:
-            self.differences_positive.append(delta)
-        if len(self.differences_positive) < 100:
-            return False
-        if len(self.differences_positive) > 100:
-            self.differences_positive.pop(0)
-        if len(self.differences_negative) > 100:
-            self.differences_negative.pop(0)
-        THRESHOLD = 400#sorted(self.differences_positive)[-15]
-        self.logger.warning(THRESHOLD)
-        return delta > THRESHOLD > 200
+        self.localMin = min(self.localMin,delta)
+        if delta == 0 and self.localMin < 0:
+            self.calc_down_threshold(self.localMin)
+            self.localMin = 0
+        self.logger.warning(self.tau_down)
+        return delta <= self.tau_down
 
     def calcAskSettings(self, instrument: int, etf: MarketState, fut: MarketState):
         if instrument == Instrument.ETF:

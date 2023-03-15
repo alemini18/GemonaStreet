@@ -14,7 +14,7 @@ class MarketState:
     def update(self, ask_prices, ask_volumes, bid_prices, bid_volumes):
         """
         Update values of the market when a new order book is sent. Then also the means are updated.
-        @param ask_prices:
+        @param ask_prices: vettori di 5 elementi
         @param ask_volumes:
         @param bid_prices:
         @param bid_volumes:
