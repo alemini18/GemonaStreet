@@ -28,7 +28,7 @@ link_directories(${Boost_LIBRARY_DIRS})
 add_subdirectory(libs)
 include_directories(${PROJECT_SOURCE_DIR}/libs)
 
-add_executable(autotrader main.cc autotrader.cc autotrader.h)
+add_executable(autotrader main.cc Trader.cpp Trader.h)
 target_link_libraries(autotrader PRIVATE ready_trader_go_lib ${Boost_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 
 if(${Boost_UNIT_TEST_FRAMEWORK_FOUND})

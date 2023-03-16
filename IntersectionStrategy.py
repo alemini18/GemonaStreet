@@ -33,7 +33,7 @@ class IntersectionStrategy(TradingStrategy):
             if self.tau_up > last_max:
                 self.avg_gain_up[i] = self.avg_gain_up[i] * 9 / 10
             else:
-                self.avg_gain_up[i] = (self.avg_gain_up[i] * 9 + (t - FEE * t))/10
+                self.avg_gain_up[i] = (self.avg_gain_up[i] * 9 + (t - FEE * 1400))/10
         self.tau_up = (np.argmax(self.avg_gain_up)+1) * 100 #il valore da usare per canSell è questo
 
     def calc_down_threshold(self,last_min):
@@ -44,7 +44,7 @@ class IntersectionStrategy(TradingStrategy):
             if self.tau_down < last_min:
                 self.avg_gain_down[i] = self.avg_gain_down[i] * 9 / 10
             else:
-                self.avg_gain_down[i] = (self.avg_gain_down[i] * 9 + (t - FEE * t)) / 10
+                self.avg_gain_down[i] = (self.avg_gain_down[i] * 9 + (t - FEE * 1400)) / 10
         self.tau_down = -(np.argmax(self.avg_gain_down) + 1) * 100  ##il valore da usare per canBuy è questo
 
     def canSell(self, instrument: int, etf: MarketState, fut: MarketState) -> bool:  #canBuy e canSell vanno chiamate assieme
@@ -60,6 +60,7 @@ class IntersectionStrategy(TradingStrategy):
         delta = etf.getMean() - fut.getMean()
         self.localMin = min(self.localMin,delta)
         if delta == 0 and self.localMin < 0:
+
             self.calc_down_threshold(self.localMin)
             self.localMin = 0
         self.logger.warning(self.tau_down)

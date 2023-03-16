@@ -1,0 +1,9 @@
+/app/extra/clion/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/app/extra/clion/bin/ninja/linux/x64/ninja -G Ninja -S /home/ale/GemonaStreet/cpp/cppready_trader_go -B /home/ale/GemonaStreet/cpp/cppready_trader_go/cmake-build-debug
+-- Could NOT find Boost (missing: Boost_INCLUDE_DIR date_time log system thread) (Required is at least version "1.74")
+CMake Error at CMakeLists.txt:18 (message):
+  Ready Trader Go requires the free Boost C++ libraries version 1.74 or
+  above.  See https://www.boost.org/.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/ale/GemonaStreet/cpp/cppready_trader_go/cmake-build-debug/CMakeFiles/CMakeOutput.log".

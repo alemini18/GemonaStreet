@@ -213,7 +213,7 @@ class AutoTrader(BaseAutoTrader):
         self.logger.info("received order book for instrument %d with sequence number %d", instrument,
                          sequence_number)
         ####print("Sequence number:" ,sequence_number)
-        if sequence_number%3 != 0:
+        if sequence_number%5 != 0:
             return
         self.checkLimitOrders()
         if instrument == Instrument.ETF:
