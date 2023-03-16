@@ -12,25 +12,23 @@ using namespace ReadyTraderGo;
 
 typedef unsigned long price;
 
-const int LOT_SIZE = 7;
+const unsigned int LOT_SIZE = 16;
 const Lifespan LIFESPAN = Lifespan::GOOD_FOR_DAY;
+
 class LIVStrategy {
-
-private:
-
 public:
 
 
     bool canBuy(Instrument instrument,
                 MarketState &etf,
                 MarketState &fut){
-        return etf.getMinAsk() - etf.getMaxBid() >= 0;
+        return etf.getMinAsk() - etf.getMaxBid() >= 300;
 
     }
     bool canSell(Instrument instrument,
                  MarketState &etf,
                  MarketState &fut){
-        return etf.getMinAsk() - etf.getMaxBid() >= 0;
+        return etf.getMinAsk() - etf.getMaxBid() >= 300;
 
     }
     void calcAskSettings(Instrument instrument,
@@ -39,7 +37,7 @@ public:
                          unsigned int &newPrice,
                          unsigned int &volume,
                          Lifespan &lifeSpan){
-        MarketState *state ;
+        MarketState *state;
         state=(instrument == Instrument::ETF ? &etf : &fut);
         unsigned int mean = state->getMean();
         unsigned int prevMean = state->getPrevMean();
@@ -49,12 +47,12 @@ public:
         unsigned int qb = state->getBidVolumeByImportance();
         unsigned int res = 0;
         if(2*(qb - qs) > (qb + qs))
-            res = mean + (abs((int)(mean - prevMean)) / 100 + 2) * 100;
+            res = mean + (abs((int)mean - (int)prevMean) / 100 + 2) * 100;
         else if(2*(qs - qb) > (qb + qs))
-            res = mean + (abs((int)(mean - prevMean)) / 100 + 0) * 100;
+            res = mean + (abs((int)mean - (int)prevMean) / 100 + 0) * 100;
         else
-            res = mean + (abs((int)(mean - prevMean)) / 100 + 1) * 100;
-        newPrice = res + (res % 100 >= 50 ? 100-res%100 : -res%100);
+            res = mean + (abs((int)mean - (int)prevMean) / 100 + 1) * 100;
+        newPrice = res + (res % 100 >= 50 ? 100-(res%100) : -(res%100));
         volume = LOT_SIZE;
         lifeSpan = LIFESPAN;
 
@@ -65,21 +63,22 @@ public:
                          unsigned int &newPrice,
                          unsigned int &volume,
                          Lifespan &lifeSpan){
-        MarketState &state = (instrument == Instrument::ETF ? etf : fut);
-        unsigned int mean = state.getMean();
-        unsigned int prevMean = state.getPrevMean();
+        MarketState *state;
+        state = (instrument == Instrument::ETF ? &etf : &fut);
+        unsigned int mean = state->getMean();
+        unsigned int prevMean = state->getPrevMean();
         if(prevMean == 0)
             prevMean = mean;
-        unsigned int qs = state.getAskVolumeByImportance();
-        unsigned int qb = state.getBidVolumeByImportance();
+        unsigned int qs = state->getAskVolumeByImportance();
+        unsigned int qb = state->getBidVolumeByImportance();
         unsigned int res = 0;
         if(2*(qb - qs) > (qb + qs))
-            res = mean + (uabs(mean - prevMean) / 100 + 0) * 100;
+            res = mean + (abs((int)mean - (int)prevMean) / 100 + 0) * 100;
         else if(2*(qs - qb) > (qb + qs))
-            res = mean + (uabs(mean - prevMean) / 100 + 2) * 100;
+            res = mean + (abs((int)mean - (int)prevMean) / 100 + 2) * 100;
         else
-            res = mean + (uabs(mean - prevMean) / 100 + 1) * 100;
-        newPrice = res + (res % 100 >= 50 ? 100-res%100 : -res%100);
+            res = mean + (abs((int)mean - (int)prevMean) / 100 + 1) * 100;
+        newPrice = res + (res % 100 >= 50 ? 100-(res%100) : -(res%100));
         volume = LOT_SIZE;
         lifeSpan = LIFESPAN;
     }

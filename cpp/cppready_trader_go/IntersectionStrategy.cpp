@@ -9,7 +9,7 @@ using namespace std;
 
 
 
-const int LOT_SIZE_IS = 30;
+const unsigned int LOT_SIZE_IS = 30;
 const Lifespan LIFESPAN_IS = Lifespan::FILL_AND_KILL;
 const int THRESHOLD_IS = 400;
 

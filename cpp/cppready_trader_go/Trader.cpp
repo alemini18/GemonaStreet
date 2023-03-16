@@ -50,6 +50,7 @@ void AutoTrader::ErrorMessageHandler(unsigned long clientOrderId,
                                      const std::string& errorMessage)
 {
     cout<< "error with order " << clientOrderId << ": " << errorMessage<<endl;
+
     if (clientOrderId != 0 && ((asks.count(clientOrderId) == 1) || (bids.count(clientOrderId) == 1)))
     {
         OrderStatusMessageHandler(clientOrderId, 0, 0, 0);
@@ -106,9 +107,9 @@ void AutoTrader::OrderBookMessageHandler(Instrument instrument,
             sendOrder(Side::BUY,true,price,volume,lifespan);
         }else{
             cout<<"SEND108\n";
-            IS.calcAskSettings(Instrument::ETF,ETF,FUT,price,volume,lifespan);
+            LIV.calcAskSettings(Instrument::ETF,ETF,FUT,price,volume,lifespan);
             sendOrder(Side::SELL,true,price,volume,lifespan);
-            IS.calcBidSettings(Instrument::ETF,ETF,FUT,price,volume,lifespan);
+            LIV.calcBidSettings(Instrument::ETF,ETF,FUT,price,volume,lifespan);
             sendOrder(Side::BUY,true,price,volume,lifespan);
         }
     }else{
@@ -133,10 +134,10 @@ void AutoTrader::OrderFilledMessageHandler(unsigned long clientOrderId,
         if(marketMaking.count(clientOrderId)){
             LIV.calcBidSettings(Instrument::FUTURE, ETF, FUT, requestPrice, _Volume, _Lifespan);
         }
-
+        updateMutex.unlock();
         sendOrder(Side::BUY, false,requestPrice, volume,Lifespan::GOOD_FOR_DAY);
     }
-    if(bids.count(clientOrderId)){
+    else if(bids.count(clientOrderId)){
         etf += (int)volume;
         money -= (int)price*volume;
         unsigned int requestPrice;
@@ -146,9 +147,10 @@ void AutoTrader::OrderFilledMessageHandler(unsigned long clientOrderId,
         if(marketMaking.count(clientOrderId)){
             LIV.calcAskSettings(Instrument::FUTURE, ETF, FUT, requestPrice, _Volume, _Lifespan);
         }
+        updateMutex.unlock();
         sendOrder(Side::SELL, false,requestPrice, volume,Lifespan::GOOD_FOR_DAY);
     }
-    updateMutex.unlock();
+    else updateMutex.unlock();
 }
 
 void AutoTrader::OrderStatusMessageHandler(unsigned long clientOrderId,
@@ -180,12 +182,9 @@ void AutoTrader::TradeTicksMessageHandler(Instrument instrument,
 }
 
 bool AutoTrader::sendOrder(Side side, bool etf, int price, int volume, Lifespan lifeSpan = Lifespan::GOOD_FOR_DAY) {
-    cwarn<<"SendOrd: "<<price<<"  "<<etf<<"  "<<volume<<"  ";
-    if(price==0){
-    return false;
-    }
+    cout<<"Prima"<<endl;
     updateMutex.lock();
-    cwarn<<"PassMutex\n";
+    cout<<"Dopo"<<endl;
     unsigned long id = mNextMessageId++;
     signed int signedVolume = (side == Side::SELL ? -1 : 1) * volume;
     if(etf){     //Ordine sugli ETF
@@ -195,6 +194,7 @@ bool AutoTrader::sendOrder(Side side, bool etf, int price, int volume, Lifespan 
                 if(side == Side::BUY)  bids[id] = make_pair(price,volume);
             }
             //CheckOperations steady_clock
+            cout<<id<<endl;
             updateMutex.unlock();
             if(can)
                 SendInsertOrder(id,side,price,volume,lifeSpan);
@@ -205,6 +205,7 @@ bool AutoTrader::sendOrder(Side side, bool etf, int price, int volume, Lifespan 
                 if (side == Side::BUY) hBids[id] = make_pair(price, volume);
             }
             //CheckOperations
+            cout<<id<<endl;
             updateMutex.unlock();
         if(can)
          SendHedgeOrder(id,side,price,volume);
@@ -240,29 +241,21 @@ bool AutoTrader::checkLots(Instrument instrument, signed int request){
 }
 
 bool AutoTrader::checkLimitOrders() {
-    updateMutex.lock();
     while(asks.size() + bids.size() > 10){
         if(asks.begin()->first<bids.begin()->first){
             //CheckOperations
             SendCancelOrder(asks.begin()->first);
-            asks.erase(asks.begin());
         }else{
             SendCancelOrder(bids.begin()->first);
-            bids.erase(bids.begin());
         }
     }
-    updateMutex.unlock();
     return true;
 }
 
 void AutoTrader::fixUnhedged() {
-
     if(etf + fut<-10){
         unsigned int requestPrice = FUT.getMinAsk();
         unsigned int volume = abs(etf+fut+10);
-        if(requestPrice==0){
-            cout<<"Trieste  "<<abs(etf+fut+10)<<"\n";
-        }
         sendOrder(Side::BUY,false,requestPrice,volume);
     }
     else if(etf + fut>10){

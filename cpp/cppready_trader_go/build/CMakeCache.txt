@@ -14,84 +14,39 @@
 # EXTERNAL cache entries
 ########################
 
-//No help, variable specified on the command line.
-BOOST_ROOT:UNINITIALIZED=/home/ale/Software/boost_1_81_0/PREFIX/
+Boost_CONTAINER_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_container.so.1.74.0
 
-//Boost container library (debug)
-Boost_CONTAINER_LIBRARY_DEBUG:FILEPATH=Boost_CONTAINER_LIBRARY_DEBUG-NOTFOUND
-
-Boost_CONTAINER_LIBRARY_RELEASE:STRING=/home/ale/Software/boost_1_81_0/PREFIX/lib/libboost_container.so.1.81.0
-
-//Boost date_time library (debug)
-Boost_DATE_TIME_LIBRARY_DEBUG:FILEPATH=Boost_DATE_TIME_LIBRARY_DEBUG-NOTFOUND
-
-Boost_DATE_TIME_LIBRARY_RELEASE:STRING=/home/ale/Software/boost_1_81_0/PREFIX/lib/libboost_date_time.so.1.81.0
+Boost_DATE_TIME_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_date_time.so.1.74.0
 
 //The directory containing a CMake configuration file for Boost.
-Boost_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/Boost-1.81.0
+Boost_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0
 
-//Boost graph library (debug)
-Boost_GRAPH_LIBRARY_DEBUG:FILEPATH=Boost_GRAPH_LIBRARY_DEBUG-NOTFOUND
-
-Boost_GRAPH_LIBRARY_RELEASE:STRING=/home/ale/Software/boost_1_81_0/PREFIX/lib/libboost_graph.so.1.81.0
+Boost_GRAPH_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_graph.so.1.74.0
 
 //Path to a file.
-Boost_INCLUDE_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/include
+Boost_INCLUDE_DIR:PATH=/usr/include
 
-//Boost log library (debug)
-Boost_LOG_LIBRARY_DEBUG:FILEPATH=Boost_LOG_LIBRARY_DEBUG-NOTFOUND
+Boost_LOG_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_log.so.1.74.0
 
-Boost_LOG_LIBRARY_RELEASE:STRING=/home/ale/Software/boost_1_81_0/PREFIX/lib/libboost_log.so.1.81.0
+Boost_MATH_C99F_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_math_c99f.so.1.74.0
 
-//Boost math_c99f library (debug)
-Boost_MATH_C99F_LIBRARY_DEBUG:FILEPATH=Boost_MATH_C99F_LIBRARY_DEBUG-NOTFOUND
+Boost_MATH_C99_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_math_c99.so.1.74.0
 
-Boost_MATH_C99F_LIBRARY_RELEASE:STRING=/home/ale/Software/boost_1_81_0/PREFIX/lib/libboost_math_c99f.so.1.81.0
+Boost_MATH_TR1F_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_math_tr1f.so.1.74.0
 
-//Boost math_c99 library (debug)
-Boost_MATH_C99_LIBRARY_DEBUG:FILEPATH=Boost_MATH_C99_LIBRARY_DEBUG-NOTFOUND
+Boost_MATH_TR1_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_math_tr1.so.1.74.0
 
-Boost_MATH_C99_LIBRARY_RELEASE:STRING=/home/ale/Software/boost_1_81_0/PREFIX/lib/libboost_math_c99.so.1.81.0
+Boost_RANDOM_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_random.so.1.74.0
 
-//Boost math_tr1f library (debug)
-Boost_MATH_TR1F_LIBRARY_DEBUG:FILEPATH=Boost_MATH_TR1F_LIBRARY_DEBUG-NOTFOUND
+Boost_REGEX_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_regex.so.1.74.0
 
-Boost_MATH_TR1F_LIBRARY_RELEASE:STRING=/home/ale/Software/boost_1_81_0/PREFIX/lib/libboost_math_tr1f.so.1.81.0
+Boost_SYSTEM_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_system.so.1.74.0
 
-//Boost math_tr1 library (debug)
-Boost_MATH_TR1_LIBRARY_DEBUG:FILEPATH=Boost_MATH_TR1_LIBRARY_DEBUG-NOTFOUND
+Boost_THREAD_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_thread.so.1.74.0
 
-Boost_MATH_TR1_LIBRARY_RELEASE:STRING=/home/ale/Software/boost_1_81_0/PREFIX/lib/libboost_math_tr1.so.1.81.0
+Boost_TIMER_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_timer.so.1.74.0
 
-//Boost random library (debug)
-Boost_RANDOM_LIBRARY_DEBUG:FILEPATH=Boost_RANDOM_LIBRARY_DEBUG-NOTFOUND
-
-Boost_RANDOM_LIBRARY_RELEASE:STRING=/home/ale/Software/boost_1_81_0/PREFIX/lib/libboost_random.so.1.81.0
-
-//Boost regex library (debug)
-Boost_REGEX_LIBRARY_DEBUG:FILEPATH=Boost_REGEX_LIBRARY_DEBUG-NOTFOUND
-
-Boost_REGEX_LIBRARY_RELEASE:STRING=/home/ale/Software/boost_1_81_0/PREFIX/lib/libboost_regex.so.1.81.0
-
-//Boost system library (debug)
-Boost_SYSTEM_LIBRARY_DEBUG:FILEPATH=Boost_SYSTEM_LIBRARY_DEBUG-NOTFOUND
-
-Boost_SYSTEM_LIBRARY_RELEASE:STRING=/home/ale/Software/boost_1_81_0/PREFIX/lib/libboost_system.so.1.81.0
-
-//Boost thread library (debug)
-Boost_THREAD_LIBRARY_DEBUG:FILEPATH=Boost_THREAD_LIBRARY_DEBUG-NOTFOUND
-
-Boost_THREAD_LIBRARY_RELEASE:STRING=/home/ale/Software/boost_1_81_0/PREFIX/lib/libboost_thread.so.1.81.0
-
-//Boost timer library (debug)
-Boost_TIMER_LIBRARY_DEBUG:FILEPATH=Boost_TIMER_LIBRARY_DEBUG-NOTFOUND
-
-Boost_TIMER_LIBRARY_RELEASE:STRING=/home/ale/Software/boost_1_81_0/PREFIX/lib/libboost_timer.so.1.81.0
-
-//Boost unit_test_framework library (debug)
-Boost_UNIT_TEST_FRAMEWORK_LIBRARY_DEBUG:FILEPATH=Boost_UNIT_TEST_FRAMEWORK_LIBRARY_DEBUG-NOTFOUND
-
-Boost_UNIT_TEST_FRAMEWORK_LIBRARY_RELEASE:STRING=/home/ale/Software/boost_1_81_0/PREFIX/lib/libboost_unit_test_framework.so.1.81.0
+Boost_UNIT_TEST_FRAMEWORK_LIBRARY_RELEASE:STRING=/usr/lib/x86_64-linux-gnu/libboost_unit_test_framework.so.1.74.0
 
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
@@ -111,11 +66,11 @@ CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
-CMAKE_CXX_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar
+CMAKE_CXX_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar-11
 
 //A wrapper around 'ranlib' adding the appropriate '--plugin' option
 // for the GCC compiler
-CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib
+CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib-11
 
 //Flags used by the CXX compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=
@@ -137,11 +92,11 @@ CMAKE_C_COMPILER:FILEPATH=/usr/bin/cc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
-CMAKE_C_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar
+CMAKE_C_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar-11
 
 //A wrapper around 'ranlib' adding the appropriate '--plugin' option
 // for the GCC compiler
-CMAKE_C_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib
+CMAKE_C_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib-11
 
 //Flags used by the C compiler during all build types.
 CMAKE_C_FLAGS:STRING=
@@ -179,9 +134,6 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 //Enable/Disable output of compile commands during generation.
 CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
 
-//Value Computed by CMake.
-CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=/home/ale/GemonaStreet/cpp/cppready_trader_go/build/CMakeFiles/pkgRedirects
-
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=/usr/local
 
@@ -189,7 +141,7 @@ CMAKE_INSTALL_PREFIX:PATH=/usr/local
 CMAKE_LINKER:FILEPATH=/usr/bin/ld
 
 //Path to a program.
-CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/make
+CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/gmake
 
 //Flags used by the linker during the creation of modules during
 // all build types.
@@ -292,58 +244,58 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //The directory containing a CMake configuration file for boost_atomic.
-boost_atomic_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_atomic-1.81.0
+boost_atomic_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_atomic-1.74.0
 
 //The directory containing a CMake configuration file for boost_chrono.
-boost_chrono_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_chrono-1.81.0
+boost_chrono_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_chrono-1.74.0
 
 //The directory containing a CMake configuration file for boost_container.
-boost_container_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_container-1.81.0
+boost_container_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_container-1.74.0
 
 //The directory containing a CMake configuration file for boost_date_time.
-boost_date_time_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_date_time-1.81.0
+boost_date_time_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_date_time-1.74.0
 
 //The directory containing a CMake configuration file for boost_filesystem.
-boost_filesystem_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_filesystem-1.81.0
+boost_filesystem_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_filesystem-1.74.0
 
 //The directory containing a CMake configuration file for boost_graph.
-boost_graph_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_graph-1.81.0
+boost_graph_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_graph-1.74.0
 
 //The directory containing a CMake configuration file for boost_headers.
-boost_headers_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_headers-1.81.0
+boost_headers_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_headers-1.74.0
 
 //The directory containing a CMake configuration file for boost_log.
-boost_log_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_log-1.81.0
+boost_log_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_log-1.74.0
 
 //The directory containing a CMake configuration file for boost_math_c99.
-boost_math_c99_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_math_c99-1.81.0
+boost_math_c99_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_math_c99-1.74.0
 
 //The directory containing a CMake configuration file for boost_math_c99f.
-boost_math_c99f_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_math_c99f-1.81.0
+boost_math_c99f_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_math_c99f-1.74.0
 
 //The directory containing a CMake configuration file for boost_math_tr1.
-boost_math_tr1_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_math_tr1-1.81.0
+boost_math_tr1_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_math_tr1-1.74.0
 
 //The directory containing a CMake configuration file for boost_math_tr1f.
-boost_math_tr1f_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_math_tr1f-1.81.0
+boost_math_tr1f_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_math_tr1f-1.74.0
 
 //The directory containing a CMake configuration file for boost_random.
-boost_random_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_random-1.81.0
+boost_random_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_random-1.74.0
 
 //The directory containing a CMake configuration file for boost_regex.
-boost_regex_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_regex-1.81.0
+boost_regex_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_regex-1.74.0
 
 //The directory containing a CMake configuration file for boost_system.
-boost_system_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_system-1.81.0
+boost_system_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_system-1.74.0
 
 //The directory containing a CMake configuration file for boost_thread.
-boost_thread_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_thread-1.81.0
+boost_thread_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_thread-1.74.0
 
 //The directory containing a CMake configuration file for boost_timer.
-boost_timer_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_timer-1.81.0
+boost_timer_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_timer-1.74.0
 
 //The directory containing a CMake configuration file for boost_unit_test_framework.
-boost_unit_test_framework_DIR:PATH=/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/boost_unit_test_framework-1.81.0
+boost_unit_test_framework_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/boost_unit_test_framework-1.74.0
 
 //Value Computed by CMake
 cppready_trader_go_BINARY_DIR:STATIC=/home/ale/GemonaStreet/cpp/cppready_trader_go/build
@@ -359,66 +311,8 @@ cppready_trader_go_SOURCE_DIR:STATIC=/home/ale/GemonaStreet/cpp/cppready_trader_
 # INTERNAL cache entries
 ########################
 
-//ADVANCED property for variable: Boost_CONTAINER_LIBRARY_DEBUG
-Boost_CONTAINER_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_CONTAINER_LIBRARY_RELEASE
-Boost_CONTAINER_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_DATE_TIME_LIBRARY_DEBUG
-Boost_DATE_TIME_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_DATE_TIME_LIBRARY_RELEASE
-Boost_DATE_TIME_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Boost_DIR
 Boost_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_GRAPH_LIBRARY_DEBUG
-Boost_GRAPH_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_GRAPH_LIBRARY_RELEASE
-Boost_GRAPH_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_INCLUDE_DIR
-Boost_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_LOG_LIBRARY_DEBUG
-Boost_LOG_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_LOG_LIBRARY_RELEASE
-Boost_LOG_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_MATH_C99F_LIBRARY_DEBUG
-Boost_MATH_C99F_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_MATH_C99F_LIBRARY_RELEASE
-Boost_MATH_C99F_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_MATH_C99_LIBRARY_DEBUG
-Boost_MATH_C99_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_MATH_C99_LIBRARY_RELEASE
-Boost_MATH_C99_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_MATH_TR1F_LIBRARY_DEBUG
-Boost_MATH_TR1F_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_MATH_TR1F_LIBRARY_RELEASE
-Boost_MATH_TR1F_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_MATH_TR1_LIBRARY_DEBUG
-Boost_MATH_TR1_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_MATH_TR1_LIBRARY_RELEASE
-Boost_MATH_TR1_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_RANDOM_LIBRARY_DEBUG
-Boost_RANDOM_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_RANDOM_LIBRARY_RELEASE
-Boost_RANDOM_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_REGEX_LIBRARY_DEBUG
-Boost_REGEX_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_REGEX_LIBRARY_RELEASE
-Boost_REGEX_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_SYSTEM_LIBRARY_DEBUG
-Boost_SYSTEM_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_SYSTEM_LIBRARY_RELEASE
-Boost_SYSTEM_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_THREAD_LIBRARY_DEBUG
-Boost_THREAD_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_THREAD_LIBRARY_RELEASE
-Boost_THREAD_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_TIMER_LIBRARY_DEBUG
-Boost_TIMER_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_TIMER_LIBRARY_RELEASE
-Boost_TIMER_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_UNIT_TEST_FRAMEWORK_LIBRARY_DEBUG
-Boost_UNIT_TEST_FRAMEWORK_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: Boost_UNIT_TEST_FRAMEWORK_LIBRARY_RELEASE
-Boost_UNIT_TEST_FRAMEWORK_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -428,9 +322,9 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/home/ale/GemonaStreet/cpp/cppready_trader_go/build
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=25
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=22
 //Patch version of cmake used to create the current loaded cache
-CMAKE_CACHE_PATCH_VERSION:INTERNAL=2
+CMAKE_CACHE_PATCH_VERSION:INTERNAL=1
 //ADVANCED property for variable: CMAKE_COLOR_MAKEFILE
 CMAKE_COLOR_MAKEFILE-ADVANCED:INTERNAL=1
 //Path to CMake executable.
@@ -473,8 +367,6 @@ CMAKE_C_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 CMAKE_C_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_DLLTOOL
 CMAKE_DLLTOOL-ADVANCED:INTERNAL=1
-//Path to cache edit program executable.
-CMAKE_EDIT_COMMAND:INTERNAL=/usr/bin/ccmake
 //Executable file format
 CMAKE_EXECUTABLE_FORMAT:INTERNAL=ELF
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS
@@ -501,11 +393,13 @@ CMAKE_GENERATOR_PLATFORM:INTERNAL=
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
 //Test CMAKE_HAVE_LIBC_PTHREAD
 CMAKE_HAVE_LIBC_PTHREAD:INTERNAL=1
+//Have include pthread.h
+CMAKE_HAVE_PTHREAD_H:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/home/ale/GemonaStreet/cpp/cppready_trader_go
 //Install .so files without execute permission.
-CMAKE_INSTALL_SO_NO_EXE:INTERNAL=0
+CMAKE_INSTALL_SO_NO_EXE:INTERNAL=1
 //ADVANCED property for variable: CMAKE_LINKER
 CMAKE_LINKER-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MAKE_PROGRAM
@@ -535,7 +429,7 @@ CMAKE_RANLIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_READELF
 CMAKE_READELF-ADVANCED:INTERNAL=1
 //Path to CMake installation.
-CMAKE_ROOT:INTERNAL=/usr/share/cmake-3.25
+CMAKE_ROOT:INTERNAL=/usr/share/cmake-3.22
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS
 CMAKE_SHARED_LINKER_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_SHARED_LINKER_FLAGS_DEBUG
@@ -567,19 +461,7 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding Boost
-FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/home/ale/Software/boost_1_81_0/PREFIX/lib/cmake/Boost-1.81.0/BoostConfig.cmake][cfound components: date_time log system thread container graph math_c99 math_c99f math_tr1 math_tr1f random regex timer unit_test_framework ][v1.81.0(1.74)]
-//Details about finding Threads
-FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
-//Components requested for this build tree.
-_Boost_COMPONENTS_SEARCHED:INTERNAL=container;date_time;graph;log;math_c99;math_c99f;math_tr1;math_tr1f;random;regex;system;thread;timer;unit_test_framework
-//Last used Boost_INCLUDE_DIR value.
-_Boost_INCLUDE_DIR_LAST:INTERNAL=Boost_INCLUDE_DIR-NOTFOUND
-//Last used Boost_NAMESPACE value.
-_Boost_NAMESPACE_LAST:INTERNAL=boost
-//Last used Boost_USE_MULTITHREADED value.
-_Boost_USE_MULTITHREADED_LAST:INTERNAL=TRUE
-//linker supports push/pop state
-_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
+FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake][cfound components: date_time log system thread container graph math_c99 math_c99f math_tr1 math_tr1f random regex timer unit_test_framework ][v1.74.0(1.74)]
 //ADVANCED property for variable: boost_atomic_DIR
 boost_atomic_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: boost_chrono_DIR

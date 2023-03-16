@@ -110,7 +110,6 @@ private:
     MarketState FUT;
     LIVStrategy LIV;
     IntersectionStrategy IS;
-    mutex operationMutex;
     mutex updateMutex;
 
     bool sendOrder(Side side, bool etf, int price, int volume, Lifespan lifeSpan);
