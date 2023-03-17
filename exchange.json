@@ -1,6 +1,6 @@
 {
   "Engine": {
-    "MarketDataFile": "data/market_data1.csv",
+    "MarketDataFile": "data/market_data3.csv",
     "MarketEventInterval": 0.05,
     "MarketOpenDelay": 5.0,
     "MatchEventsFile": "match_events.csv",
@@ -36,9 +36,9 @@
     "PositionLimit": 100
   },
   "Traders": {
-    "Trader02": "secret",
-    "Trader01": "secret",
     "TraderInt": "secret",
-    "GemonaStreet": "secret"
+    "Trader01": "secret",
+    "IntMix": "secret",
+    "TraderOne": "secret"
   }
 }

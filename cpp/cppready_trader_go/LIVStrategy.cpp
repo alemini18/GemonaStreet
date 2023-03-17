@@ -12,23 +12,36 @@ using namespace ReadyTraderGo;
 
 typedef unsigned long price;
 
-const unsigned int LOT_SIZE = 16;
+const unsigned int LOT_SIZE = 7;
 const Lifespan LIFESPAN = Lifespan::GOOD_FOR_DAY;
 
 class LIVStrategy {
 public:
 
-
-    bool canBuy(Instrument instrument,
+    int square(int x){
+        return x*x;
+    }
+    bool canBuy(Instrument instrument, //Se si usa anche canSell aggiungere la volatilità anche li
                 MarketState &etf,
                 MarketState &fut){
-        return etf.getMinAsk() - etf.getMaxBid() >= 300;
+        static auto start = chrono::steady_clock::now();
+        int sum = 0;
+        //cerr<<etf.historicalSize()<<endl;
+        if(etf.historicalSize() < 60)return false;
+        for(int i=1;i<60;i++){
+            sum+=square((etf.getHistoricalMean(i)-etf.getHistoricalMean(i-1))/100);
+        }
+        auto now = chrono::steady_clock::now();
+        chrono::duration<double> diff = now - start;
+        cerr<<diff.count()<<"sigma: "<<(double)sum/60.0<<endl;
+        return true;
+        //return ((etf.getMinAsk() - etf.getMaxBid() > 0) and ((1.9 > (double)sum/60.0) > 0.7 ));
 
     }
     bool canSell(Instrument instrument,
                  MarketState &etf,
                  MarketState &fut){
-        return etf.getMinAsk() - etf.getMaxBid() >= 300;
+        return etf.getMinAsk() - etf.getMaxBid() > 300;
 
     }
     void calcAskSettings(Instrument instrument,

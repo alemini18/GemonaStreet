@@ -18,6 +18,7 @@ private:
                  askVolumes,
                  bidPrices,
                  bidVolumes;
+    deque<int> priceHistory;
     int mean,
         prevMean;
     mutex updateMutex;
@@ -58,6 +59,8 @@ public:
         bidVolumes = bidVolume;
         prevMean = mean;
         mean = calcMean();
+        priceHistory.push_back(mean);
+        if(priceHistory.size() > 60)priceHistory.pop_front();
         updateMutex.unlock();
     }
     int getBidVolumeByImportance(){
@@ -74,6 +77,15 @@ public:
         }
         return sum;
     }
+    int historicalSize(){
+        return priceHistory.size();
+    }
+    int getHistoricalMean(int id){
+        if(id >= priceHistory.size()) id = priceHistory.size() - 1;
+        return priceHistory[id];
+
+    }
+
 
 };
 #endif //GEMONASTREET_MARKETSTATE_H

@@ -244,13 +244,13 @@ class AutoTrader(BaseAutoTrader):
             meanETF = self.ETF.getMean()
             meanFUT = self.FUT.getMean()
             print(meanETF - meanFUT)
-            if meanETF - meanFUT > 400:
+            if meanETF - meanFUT >= 400:
                 if self.ETF.getMaxBid() > 0 and self.checkLots(Instrument.ETF, - LOT_SIZE - 20):
                     ask_id = next(self.order_ids)
                     self.checkOperations()
                     self.send_insert_order(ask_id, Side.SELL, self.ETF.getMaxBid(), LOT_SIZE + 20, Lifespan.FILL_AND_KILL)
                     self.asks[ask_id] = [self.ETF.getMaxBid(), LOT_SIZE + 20, time.time()]
-            if meanETF - meanFUT < -400:
+            if meanETF - meanFUT <= -400:
                 if self.ETF.getMinAsk() > 0 and self.checkLots(Instrument.ETF, LOT_SIZE + 20):
                     bid_id = next(self.order_ids)
                     self.checkOperations()

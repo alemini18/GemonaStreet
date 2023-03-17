@@ -49,7 +49,7 @@ void AutoTrader::DisconnectHandler()
 void AutoTrader::ErrorMessageHandler(unsigned long clientOrderId,
                                      const std::string& errorMessage)
 {
-    cout<< "error with order " << clientOrderId << ": " << errorMessage<<endl;
+    RLOG(LG_AT, LogLevel::LL_INFO) << "error with order " << clientOrderId << ": " << errorMessage<<endl;
 
     if (clientOrderId != 0 && ((asks.count(clientOrderId) == 1) || (bids.count(clientOrderId) == 1)))
     {
@@ -97,16 +97,13 @@ void AutoTrader::OrderBookMessageHandler(Instrument instrument,
         unsigned int price;
         unsigned int volume;
         Lifespan lifespan;
-        if(IS.canSell(Instrument::ETF,ETF,FUT)){
+        if(false and IS.canSell(Instrument::ETF,ETF,FUT)){
             IS.calcAskSettings(Instrument::ETF,ETF,FUT,price,volume,lifespan);
-            cout<<"SEND101\n";
             sendOrder(Side::SELL,true,price,volume,lifespan);
-        }else if(IS.canBuy(Instrument::ETF,ETF,FUT)){
+        }else if(false and IS.canBuy(Instrument::ETF,ETF,FUT)){
             IS.calcBidSettings(Instrument::ETF,ETF,FUT,price,volume,lifespan);
-            cout<<"SEND105\n";
             sendOrder(Side::BUY,true,price,volume,lifespan);
-        }else{
-            cout<<"SEND108\n";
+        }else if(LIV.canBuy(Instrument::ETF,ETF,FUT)){
             LIV.calcAskSettings(Instrument::ETF,ETF,FUT,price,volume,lifespan);
             sendOrder(Side::SELL,true,price,volume,lifespan);
             LIV.calcBidSettings(Instrument::ETF,ETF,FUT,price,volume,lifespan);
@@ -182,9 +179,7 @@ void AutoTrader::TradeTicksMessageHandler(Instrument instrument,
 }
 
 bool AutoTrader::sendOrder(Side side, bool etf, int price, int volume, Lifespan lifeSpan = Lifespan::GOOD_FOR_DAY) {
-    cout<<"Prima"<<endl;
     updateMutex.lock();
-    cout<<"Dopo"<<endl;
     unsigned long id = mNextMessageId++;
     signed int signedVolume = (side == Side::SELL ? -1 : 1) * volume;
     if(etf){     //Ordine sugli ETF
@@ -194,7 +189,6 @@ bool AutoTrader::sendOrder(Side side, bool etf, int price, int volume, Lifespan 
                 if(side == Side::BUY)  bids[id] = make_pair(price,volume);
             }
             //CheckOperations steady_clock
-            cout<<id<<endl;
             updateMutex.unlock();
             if(can)
                 SendInsertOrder(id,side,price,volume,lifeSpan);
@@ -204,8 +198,7 @@ bool AutoTrader::sendOrder(Side side, bool etf, int price, int volume, Lifespan 
                 if (side == Side::SELL) hAsks[id] = make_pair(price, volume);
                 if (side == Side::BUY) hBids[id] = make_pair(price, volume);
             }
-            //CheckOperations
-            cout<<id<<endl;
+            //CheckOperation
             updateMutex.unlock();
         if(can)
          SendHedgeOrder(id,side,price,volume);
@@ -241,13 +234,30 @@ bool AutoTrader::checkLots(Instrument instrument, signed int request){
 }
 
 bool AutoTrader::checkLimitOrders() {
-    while(asks.size() + bids.size() > 10){
+    /*while(asks.size() + bids.size() > 10){
         if(asks.begin()->first<bids.begin()->first){
             //CheckOperations
             SendCancelOrder(asks.begin()->first);
         }else{
             SendCancelOrder(bids.begin()->first);
         }
+    }*/
+    if(asks.size() + bids.size() > 6){
+        vector<unsigned long> toBeRemoved;
+        int i=0;
+        for(auto x:asks){
+            toBeRemoved.push_back(x.first);
+            i++;
+            if(i==3)break;
+        }
+        i=0;
+        for(auto x:bids){
+            toBeRemoved.push_back(x.first);
+            i++;
+            if(i==3)break;
+        }
+        sort(toBeRemoved.begin(),toBeRemoved.end());
+        for(int i=0;i<3;i++)SendCancelOrder(toBeRemoved[i]);
     }
     return true;
 }
